@@ -1,4 +1,4 @@
-name: Build Release App Bundle
+name: Android Publish
 
 on:
   workflow_dispatch:
@@ -6,29 +6,37 @@ on:
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
+
     steps:
-      - name: Decode Keystore
-        id: decode_keystore
-        uses: timheuer/base64-to-file@v1
-        with:
-          fileName: 'keystore/your_signing_keystore.jks'
-          encodedString: "MIIKIwIBAzCCCdwGCSqGSIb3DQEHAaCCCc0EggnJMIIJxTCCBawGCSqGSIb3DQEHAaCCBZ0EggWZMIIFlTCCBZEGCyqGSIb3DQEMCgECoIIFQDCCBTwwZgYJKoZIhvcNAQUNMFkwOAYJKoZIhvcNAQUMMCsEFFEbPpJJjgdNl4xXiD+WPKWom08WAgInEAIBIDAMBggqhkiG9w0CCQUAMB0GCWCGSAFlAwQBKgQQEGHEr4poY7dmpujkHToMmwSCBNAxWEfHay6E4NHotoafK7RioLti+ynmZY169bz1EK0y+UmYAF/38j6jGUeZ2B5qZwtNCL6EIj1fQjUZb6ZEGEb9iOf3g6zdgjJZnZ1jdnViXaroar5C6wuXg1m3kT9m5Udx8+XDVlf3Yy1v0gpPc/F4d2SNxJUbMVBLmnzov59nJWSr4vsu5gxhSnXFcJ6DBrjwlxqPXs+Ms0Mlmxlij7eGzJG9Q5uIgrM2AVGCZMHpRT34kTzh+OLz7i5NNuZ4Y8EYdUtnaQEmVqYgV66D/2YAmmQSMs/C40wFelVute+vY+qd/qBgolPoNxiR+YJiB3coFHgZZVN4gbxAjj1KUl/A3CLDZ3LDO2MTMLs6EI2PBFQfAOOwpMHdxkxw08al/Yf2jgd9J/xjlh0ssBscrOiUoGlZCS/9V3vIlmd5PzLrC29Yc+R+0s+pvl+ERPmiXvYsz4f+8P/ETxtdBmmLEaOQ9K2RtfyUDguwFVBj0rjKK4ltZupBavHXCfygZVbKEk9n70xhiVVeybD2zpWZXNPVVxhsAlraKmqszav3nN3LIKsCaUzdui4D9LVfB+88GPsul/J/92KEr8S5+JrM8XhRDA0fupTT5A4782WP7IHeM3AWl0WWBb7knrglLgc1qvCs6Cq6Pl70/9eeqo1NSicsGGWYYzBzuBmPSFKk4qVjlOOIEPmz2Wrtywb/7XX8TJtQO6XRh80eYbdfTgCB/Ys12jF5GNW4Pj8Jm3oTNUEfeJPVRQ+tkuo+eJq8seUw9zq2TwnG3JCu77c7Ws42ofKN794k641bmlJgsBvr8XLiAsry7iJCnLZW52DNuAl6LHjFZEr5QP5/6c7WEIDJHVP+4FbEF4Q+GM8iYaIbdktb3TOvxfTUXiHASvz6qvpoJfsH4ZmRYiWUReyHEsfftGwFGXj4bNVffa/5UB1ddC0Ybxz9uYikqtSOUPeigNKbTM/gGp4+klgDPibDbeAIDGefzblPr/tdArHeukjgwL2/+31RR8yHd4aW3FLA5YNDwaulA1072ZMlGAbsQfdzELAk0ozAsw5q4QAGw2QZq1we7pEy4w87bAu16iQNimP9VaTA+8gHF6x0HDwNdvG1Th+mwmyu1UYEYbBFXQ9cu9jz/gKDI0lvxOPGVw9p1q715w8uSvbOCCzGuQit5c6WhDch1+JbDRAETM9JyILqiRr/IoySObi1eWq9jf2DZOtLQ60cuBy43FNIUtm26+fKKY65uus5aXgs0gLyrE4tgMhEKK7NSSNcTdA8aLOikRWXVgXuTnG925OoQgYybh5El47ueZZiaqGeHX+KjzxTAQhyKiQoaniTzng73vaTiHnveU4w8knr6m2xI29qeQ/GwCBFiUTjHiEPu/UMJkOulL7f64yyCWgRQ6z2LNkx5/Uo2Vdkh96UFsuRYxw9PkRzTG1S9rfJc2MIWPZ53AyNzKoLGubFENHlEqu4T88GJROIRzYUgzSQCuXt9JMXXVYWGzEdFjpouJWsWfDzqfmYFczvcYWkclu4yqXzC8zNqCOuDB+D5rTza3LXHJ7qh6E9/awocQB2qnCP1qHIFpSnMEJsYd/oInWZdZTfMXb6ZejcbGjquFF5G8/s/VA+izGbjmlzZE035UeVzT+MIZznJ1PmdTE+MBkGCSqGSIb3DQEJFDEMHgoAcgB1AG0AbQB5MCEGCSqGSIb3DQEJFTEUBBJUaW1lIDE2NjkwMzAwODE1MjEwggQRBgkqhkiG9w0BBwagggQCMIID/gIBADCCA/cGCSqGSIb3DQEHATBmBgkqhkiG9w0BBQ0wWTA4BgkqhkiG9w0BBQwwKwQUJo2+brNAEm5f1NnJ8Bj4MrIqOU4CAicQAgEgMAwGCCqGSIb3DQIJBQAwHQYJYIZIAWUDBAEqBBB7PRVbZbxWAx7hqHQpY1LrgIIDgJDWX2lPWwiUtL8yFxG1sJcL5baDKjLjqFGNmvujXK5N3UY1CpaJ9wKBT7ma3Ep4NFILKSiS7ktK0jY8ekxcnUN9aDWcXGu7az/1sjjy3VuPDj/ux+r2JHQZvbLfMV/XmW7hn5HUTpUo46JQXZ8PPxjUjEWGOsEAxf7KmyA3tAPo3/geu3ZIHqDMqLIW+z2aKU2Iz0BB+cELrATjy+HXOXVA8bDWTlPFXYvaazGEGx4WQ/Pg8Ns998ENF8QywdU7DwsCsI7YeNGBxer1HZ8a4nhfF3up1rXDnCaX+gUX3dbdxyaQP+G5wpWRz9DHiivWcu34aXJE/L+modzyYXVYPhl3Y/wziKp5P0HkfiTrIRO3Gd8djUqApjDK/Y7lh33QJO8vzWxc38INuNBeBOuk6FVNP52QF9ebOTjR2IMuphEXqV/oDxXB6Tzy3jse5DZW8LOvphCRhJJETO4JEe9AJeLyvI3xGgAgvEb3GUo7+RFMbjZu3gOHBLby27ae9Rpptx38a7XhRdGgCtijlNCb/RWhBluEmxYMmIQXMGZXpxkEjll70HxP0BuUJYqeDnng8cIMJ3hVthW1jPfL1NAzbeLHTox5UGSiZGlGX9JQaKMjOLLfBwtTHn/JqAKSf0R8F3zAmLO5H0n63oMOcXPOr7KtC5xLoMdHr/qSXqObI/Q+3PWd9T0nIUbjpWvT1FB/5zDRmumaP0vTOYKksssZog3sdbpndkK/W78UC6Vp6FuucQiNeQqPvMi78UXnLY0nstcouNzp7AgqUp8dkCuDekUeNTC+0X85mofpMfdUm2AKF3uDc+eLD03iFLsne3oE0n4cSLCbwMKzgXv8z5meZSycU3r7LlLecpXGHcrZQUULWKGVt0XECOCIk3Y/x9zmQgZJcaAIRd0b7HPl0BW9YlWCtlHbRC0cv0ZZZrcZwmGbtI+hQ3y27OEQ+kr9ntOMtVRRu0iEkpgKWDXB7btwPzW+oNthJsB5EZpsWFGxNO7f0vpa/QEVtF4Ee6R4u+iE1MJjk3aR8xnAX/rkL3B/UfPQi52fQ/o29llfwSxoyomWGhRsP0o2oMzUAR8is7a5Br/MY7apCT5wnk4Yn+LYQFlkLdbEZrbQXXXnTIzJKNHPShtGWmFNmrqlLYOLf8i7fcVtGFNgDgG8Xym0/Ji5T5j0q3MA5MB3uXMQyrVxxD+hMD4wITAJBgUrDgMCGgUABBQROqNdOvbKdg2XJVMCoIWpzx2/jgQUbccLaSUHXqsI7j8tuwyjx6ri77gCAwGGoA=="
-      - uses: actions/checkout@v2
-      - name: set up JDK 11
+      - uses: actions/checkout@v1
+
+      - name: Set Up JDK
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Make gradlew executable
+
+      - name: Change wrapper permissions
         run: chmod +x ./gradlew
-      - name: build prod
-        run: ./gradlew app:bundleRelease
-        env:
-          SIGNING_KEY_ALIAS: "Kim"
-          SIGNING_KEY_PASSWORD: "Kim@8866"
-          SIGNING_STORE_PASSWORD: "Kim@8866"
-      - name: Upload
+
+      - name: Build Project
+        run: ./gradlew build
+
+      - name: Build Release AAB      // 1
+        run: ./gradlew bundleRelease
+
+      - name: Sign AAB               // 2
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: app/build/outputs/bundle/release
+          signingKeyBase64: "MIIKIwIBAzCCCdwGCSqGSIb3DQEHAaCCCc0EggnJMIIJxTCCBawGCSqGSIb3DQEHAaCCBZ0EggWZMIIFlTCCBZEGCyqGSIb3DQEMCgECoIIFQDCCBTwwZgYJKoZIhvcNAQUNMFkwOAYJKoZIhvcNAQUMMCsEFFEbPpJJjgdNl4xXiD+WPKWom08WAgInEAIBIDAMBggqhkiG9w0CCQUAMB0GCWCGSAFlAwQBKgQQEGHEr4poY7dmpujkHToMmwSCBNAxWEfHay6E4NHotoafK7RioLti+ynmZY169bz1EK0y+UmYAF/38j6jGUeZ2B5qZwtNCL6EIj1fQjUZb6ZEGEb9iOf3g6zdgjJZnZ1jdnViXaroar5C6wuXg1m3kT9m5Udx8+XDVlf3Yy1v0gpPc/F4d2SNxJUbMVBLmnzov59nJWSr4vsu5gxhSnXFcJ6DBrjwlxqPXs+Ms0Mlmxlij7eGzJG9Q5uIgrM2AVGCZMHpRT34kTzh+OLz7i5NNuZ4Y8EYdUtnaQEmVqYgV66D/2YAmmQSMs/C40wFelVute+vY+qd/qBgolPoNxiR+YJiB3coFHgZZVN4gbxAjj1KUl/A3CLDZ3LDO2MTMLs6EI2PBFQfAOOwpMHdxkxw08al/Yf2jgd9J/xjlh0ssBscrOiUoGlZCS/9V3vIlmd5PzLrC29Yc+R+0s+pvl+ERPmiXvYsz4f+8P/ETxtdBmmLEaOQ9K2RtfyUDguwFVBj0rjKK4ltZupBavHXCfygZVbKEk9n70xhiVVeybD2zpWZXNPVVxhsAlraKmqszav3nN3LIKsCaUzdui4D9LVfB+88GPsul/J/92KEr8S5+JrM8XhRDA0fupTT5A4782WP7IHeM3AWl0WWBb7knrglLgc1qvCs6Cq6Pl70/9eeqo1NSicsGGWYYzBzuBmPSFKk4qVjlOOIEPmz2Wrtywb/7XX8TJtQO6XRh80eYbdfTgCB/Ys12jF5GNW4Pj8Jm3oTNUEfeJPVRQ+tkuo+eJq8seUw9zq2TwnG3JCu77c7Ws42ofKN794k641bmlJgsBvr8XLiAsry7iJCnLZW52DNuAl6LHjFZEr5QP5/6c7WEIDJHVP+4FbEF4Q+GM8iYaIbdktb3TOvxfTUXiHASvz6qvpoJfsH4ZmRYiWUReyHEsfftGwFGXj4bNVffa/5UB1ddC0Ybxz9uYikqtSOUPeigNKbTM/gGp4+klgDPibDbeAIDGefzblPr/tdArHeukjgwL2/+31RR8yHd4aW3FLA5YNDwaulA1072ZMlGAbsQfdzELAk0ozAsw5q4QAGw2QZq1we7pEy4w87bAu16iQNimP9VaTA+8gHF6x0HDwNdvG1Th+mwmyu1UYEYbBFXQ9cu9jz/gKDI0lvxOPGVw9p1q715w8uSvbOCCzGuQit5c6WhDch1+JbDRAETM9JyILqiRr/IoySObi1eWq9jf2DZOtLQ60cuBy43FNIUtm26+fKKY65uus5aXgs0gLyrE4tgMhEKK7NSSNcTdA8aLOikRWXVgXuTnG925OoQgYybh5El47ueZZiaqGeHX+KjzxTAQhyKiQoaniTzng73vaTiHnveU4w8knr6m2xI29qeQ/GwCBFiUTjHiEPu/UMJkOulL7f64yyCWgRQ6z2LNkx5/Uo2Vdkh96UFsuRYxw9PkRzTG1S9rfJc2MIWPZ53AyNzKoLGubFENHlEqu4T88GJROIRzYUgzSQCuXt9JMXXVYWGzEdFjpouJWsWfDzqfmYFczvcYWkclu4yqXzC8zNqCOuDB+D5rTza3LXHJ7qh6E9/awocQB2qnCP1qHIFpSnMEJsYd/oInWZdZTfMXb6ZejcbGjquFF5G8/s/VA+izGbjmlzZE035UeVzT+MIZznJ1PmdTE+MBkGCSqGSIb3DQEJFDEMHgoAcgB1AG0AbQB5MCEGCSqGSIb3DQEJFTEUBBJUaW1lIDE2NjkwMzAwODE1MjEwggQRBgkqhkiG9w0BBwagggQCMIID/gIBADCCA/cGCSqGSIb3DQEHATBmBgkqhkiG9w0BBQ0wWTA4BgkqhkiG9w0BBQwwKwQUJo2+brNAEm5f1NnJ8Bj4MrIqOU4CAicQAgEgMAwGCCqGSIb3DQIJBQAwHQYJYIZIAWUDBAEqBBB7PRVbZbxWAx7hqHQpY1LrgIIDgJDWX2lPWwiUtL8yFxG1sJcL5baDKjLjqFGNmvujXK5N3UY1CpaJ9wKBT7ma3Ep4NFILKSiS7ktK0jY8ekxcnUN9aDWcXGu7az/1sjjy3VuPDj/ux+r2JHQZvbLfMV/XmW7hn5HUTpUo46JQXZ8PPxjUjEWGOsEAxf7KmyA3tAPo3/geu3ZIHqDMqLIW+z2aKU2Iz0BB+cELrATjy+HXOXVA8bDWTlPFXYvaazGEGx4WQ/Pg8Ns998ENF8QywdU7DwsCsI7YeNGBxer1HZ8a4nhfF3up1rXDnCaX+gUX3dbdxyaQP+G5wpWRz9DHiivWcu34aXJE/L+modzyYXVYPhl3Y/wziKp5P0HkfiTrIRO3Gd8djUqApjDK/Y7lh33QJO8vzWxc38INuNBeBOuk6FVNP52QF9ebOTjR2IMuphEXqV/oDxXB6Tzy3jse5DZW8LOvphCRhJJETO4JEe9AJeLyvI3xGgAgvEb3GUo7+RFMbjZu3gOHBLby27ae9Rpptx38a7XhRdGgCtijlNCb/RWhBluEmxYMmIQXMGZXpxkEjll70HxP0BuUJYqeDnng8cIMJ3hVthW1jPfL1NAzbeLHTox5UGSiZGlGX9JQaKMjOLLfBwtTHn/JqAKSf0R8F3zAmLO5H0n63oMOcXPOr7KtC5xLoMdHr/qSXqObI/Q+3PWd9T0nIUbjpWvT1FB/5zDRmumaP0vTOYKksssZog3sdbpndkK/W78UC6Vp6FuucQiNeQqPvMi78UXnLY0nstcouNzp7AgqUp8dkCuDekUeNTC+0X85mofpMfdUm2AKF3uDc+eLD03iFLsne3oE0n4cSLCbwMKzgXv8z5meZSycU3r7LlLecpXGHcrZQUULWKGVt0XECOCIk3Y/x9zmQgZJcaAIRd0b7HPl0BW9YlWCtlHbRC0cv0ZZZrcZwmGbtI+hQ3y27OEQ+kr9ntOMtVRRu0iEkpgKWDXB7btwPzW+oNthJsB5EZpsWFGxNO7f0vpa/QEVtF4Ee6R4u+iE1MJjk3aR8xnAX/rkL3B/UfPQi52fQ/o29llfwSxoyomWGhRsP0o2oMzUAR8is7a5Br/MY7apCT5wnk4Yn+LYQFlkLdbEZrbQXXXnTIzJKNHPShtGWmFNmrqlLYOLf8i7fcVtGFNgDgG8Xym0/Ji5T5j0q3MA5MB3uXMQyrVxxD+hMD4wITAJBgUrDgMCGgUABBQROqNdOvbKdg2XJVMCoIWpzx2/jgQUbccLaSUHXqsI7j8tuwyjx6ri77gCAwGGoA=="
+          alias: "Rummy"
+          keyStorePassword: "Rummy@8866"
+          keyPassword: "Rummy@8866"
+          
+      - name: Upload APK
         uses: actions/upload-artifact@v2
         with:
-          name: Build Artifacts
-          path: app/build/outputs/
+          name: app
+          path: app/build/outputs
